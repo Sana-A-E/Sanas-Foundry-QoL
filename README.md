@@ -31,7 +31,7 @@ Stop manually updating your journal entries every time the party levels up or th
 * **Native Look:** Elements are styled to match Foundry's inline rolls (orange, bold, and interactive).
 * **Flexible Lookup:** Reference actors by a custom **Alias**, their **UUID**, or simply their **Name**.
 * **Smart Leveling:** `@Level` automatically calculates total character level for multiclassed PCs.
-* **Works inside inline rolls:** You can use the numbers inside inline rolls: `[[d20 + @StrMod[Jack]]]`
+* **Inline Roll Integration:** Use your custom tags inside math formulas! `[[d20 + @StrMod[Jack]]]`
 
 ---
 
@@ -57,6 +57,16 @@ The `Identifier` can be a name you've set in your **Party Mappings**, a standard
 * "Ok, here is my Arcana check: [[d20 **@Arcana[Jane]**]]" ⮕ *Ok, here is my Arcana check: **21***
 * "The trap deals damage equal to 20% of your max health, Jack. That is [[0.2 * **@MaxHP[Actor.v3p9Xj48Z123]**]]." ⮕ *The trap deals damage equal to 20% of your max health, Jack. That is **12**.*
 
+#### 🎲 Inline Roll Support
+
+You can use these tags directly inside Foundry's native inline roll syntax `[[ ]]`. The module will automatically swap the tag for the correct numerical value before the dice are rolled.
+
+**Examples:**
+* `[[d20 + @StrMod[John]]]` ⮕ Foundry rolls: `d20 + 3`
+* `[[@Level[Jane]d6 + @IntMod[Jane]]]` ⮕ Foundry rolls: `12d6 + 5`
+* `The trap deals [[@Level[John] + @Prof[John]]] damage.`
+
+> **Note:** Once a roll is sent to chat, the value is "locked in." If the actor's stats change later, you must re-roll to see the updated bonus in the chat.
 ---
 
 ### ⚙️ Configuration
