@@ -7,7 +7,7 @@
 <!--- replace <your-module-name> with the `name` in your manifest -->
 <!--- ![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2F<your-module-name>&colorB=4aa94a) -->
 
-# Sana's Quality of Life Improvements for Foundry VTT (FoundryVTT Module)
+# Sana's Quality of Life Improvements for Foundry VTT
 A FoundryVTT module adding various new functionalities and improvments to Foundry. Tested to work on Foundry v12. Might work on other versions too.
 
 Still in the dev process. Come back later.
