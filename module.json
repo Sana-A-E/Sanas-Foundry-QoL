@@ -1,7 +1,7 @@
 {
-  "id": "module",
-  "title": "New Module",
-  "description": "",
+  "id": "Sanas-Foundry-QoL",
+  "title": "Sana's Quality of Life Improvements for Foundry",
+  "description": "Adds useful functionality to Foundry.",
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
@@ -12,9 +12,8 @@
   },
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "Sana-A-E",
+      "url": "https://github.com/Sana-A-E"
     }
   ],
   "relationships": {
