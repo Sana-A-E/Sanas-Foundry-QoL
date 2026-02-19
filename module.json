@@ -1,7 +1,7 @@
 {
   "id": "Sanas-Foundry-QoL",
-  "title": "Sana's Quality of Life Improvements for Foundry",
-  "description": "Adds useful functionality to Foundry.",
+  "title": "Sana's Quality of Life Improvements",
+  "description": "Adds useful functionality such as Dynamic Actor Enrichers (@Level[Jack], etc.).",
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
