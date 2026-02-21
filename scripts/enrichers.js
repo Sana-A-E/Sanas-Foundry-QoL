@@ -92,4 +92,36 @@ export function registerCustomEnrichers() {
             return span;
         }
     });
+
+	// --- 3. INLINE ROLL COLOR HIGHLIGHTING (Crits & Fumbles) ---
+    // Intercept the creation of the inline roll button and color natural 1's red and natural 20's green
+    const originalToAnchor = Roll.prototype.toAnchor;
+    Roll.prototype.toAnchor = async function(...args) {
+        // Build the native anchor element first
+        const anchor = await originalToAnchor.apply(this, args);
+        
+        // If the roll hasn't been evaluated yet, just return it
+        if (!this._evaluated) return anchor;
+
+        // Look for a d20/d100/d1000 in the roll's dice terms
+        const d20 = this.dice.find(d => d.faces === 20 || d.faces === 100 || d.faces === 1000);
+        if (d20) {
+            // Find the active result (this ignores dropped dice from advantage/disadvantage)
+            const activeRoll = d20.results.find(r => r.active);
+            
+            if (activeRoll) {
+                if (activeRoll.result === 20 || activeRoll.result === 100 || activeRoll.result === 1000) {
+                    // Natural 20 - Green theme
+                    anchor.style.color = "#18520b";
+                    anchor.style.fontWeight = "bold";
+                } else if (activeRoll.result === 1) {
+                    // Natural 1 - Red theme
+                    anchor.style.color = "#aa0200";
+                    anchor.style.fontWeight = "bold";
+                }
+            }
+        }
+        
+        return anchor;
+    };
 }
