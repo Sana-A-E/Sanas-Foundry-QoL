@@ -11,12 +11,14 @@
 A FoundryVTT module for DnD5e adding various new functionalities and improvments to Foundry. Tested to work on Foundry v12. Might work on higher versions too but hasn't been tested.
 Currently you can't turn on or off features if you just want some features but not the others, but I might add this option in the future.
 
-* [Dynamic Actor Enrichers](#📝-dynamic-actor-enrichers-(dnd5e))
+* [Dynamic Actor Enrichers](#📝-dynamic-actor-enrichers-(dnd5e)) - for quickly doing rolls using your character stats from anywhere
+* [Inline Random Choices](#🎲-inline-random-choices) - for small choices where setting up a rollable table is too much
 * Your immediate d20/d100/d1000 rolls (regardless of whether you are using Dynamic Actor Enrichers in them) will now be colored red/green for natural 1's and natural 20/100/1000. Usefull to know, if you want to add some spice and make something interesting happen at those times.
 
 
 ## Changelog
-* 0.1.1 (Feb 21, 2026)
+* 0.2 (Feb 21, 2026)
+  * Added Inline Random Choices
   * Immediate d20/d100/d1000 rolls will now be colored red if you received a natural 1, or green if you received a natural 20/100/1000. This works for normal rolls as well, not just rolls using my enrichers. 
 * 0.1
   * Added Dynamic Actor Enrichers for DnD5e
@@ -101,3 +103,45 @@ Instead of copy-pasting long UUIDs every time, you can define short-hand "Aliase
   * "Quick! Come up with an Arcana puzzle the party should be able to solve."
   * "I knew I shouldn't have let them roll for stats in character creation... 🤦‍♀️ Help me calculate their current effective level so I can adjust the combat difficulty."
   * "Andrew wants to loot everything again... come up with some common stuff appropriate for his level."
+
+---
+
+## 🎲 Inline Random Choices
+
+Generate random, unique selections on the fly! This is processed *before* other Foundry systems, meaning your random choices can seamlessly include other rich text tags (like `@UUID` or `@StrMod`).
+You can write these in chat, journal, item descriptions, rollable table text results... everywhere!
+
+Often times, setting up a roll table is impractical. You can't do it on the fly. For one time draws, it's a waste of time to set up a roll table. And how are you supposed to set up a roll table for your player's unpredictable actions? With inline random choices, now you don't have to. Whenever you are uncertain about something that has several ways it can go, just let the gods decide, and you don't need to remember what value you assigned to what roll number.
+
+**Syntax:** `@PickN[Option1|Option2]{Separator}`
+* `N` (Optional): The number of unique choices to pick (defaults to 1 if you don't provide a number by using it via @Pick[]).
+* `[Options]`: A list of text separated by the `|` symbol. Options can contain html, other tags and references, or anything else you want.
+* `{Separator}` (Optional): The text used to join multiple results together. Only used if you are picking more than 1 result. (defaults to `, `).
+
+### Examples
+
+**Single Pick:**
+* "The monster attacks <b>@Pick[Jack|Jane|@UUID[Actor.123]]</b>."
+  ⮕ *The monster attacks **Jane**.*
+
+**Multiple Picks (Default Separator):**
+* "You find potions of **@Pick2[Healing|Invisibility|Flying|Fire Breath]**."
+  ⮕ *You find potions of **Flying, Healing**.*
+
+**Multiple Picks (Custom Separator):**
+* "The trap hits **@Pick2[John|Jane|Tom]{ and }**!"
+  ⮕ *The trap hits **John and Tom**!*
+
+**Inside Inline Rolls:**
+* `[[ @Pick[1d6|1d8|1d10] + 3 ]]`
+  ⮕ *Rolls either 1d6+3, 1d8+3, or 1d10+3.*
+
+### 💡 Usage ideas and tips
+
+**Randomizing encounters on the fly:** If a party encounters a disturbance during the night, I write: "Disturbance happens after [[1d16/2]] hours, while @Pick[Jack (Perception: [[d20 + @Perception[Jack]]])|Jane (Perception: [[d20 + @Perception[Jane]]])] is on guard duty."
+
+Which then turns into: "Disturbance happens after 2.5 hours, while Jack (Perception: 9) is on guard duty."
+
+**Quickly customizing event results:** When your player attempts to do something that you can't have possibly predicted and therefore can't set up a table for it. Or something that is a one time thing
+
+**Adding Variety to Text** without setting up endless nested roll tables. Quick tip, you can even use them inside text results of rolltables.
