@@ -12,10 +12,14 @@ A FoundryVTT module for DnD5e adding various new functionalities and improvments
 Currently you can't turn on or off features if you just want some features but not the others, but I might add this option in the future.
 
 * [Dynamic Actor Enrichers](#📝-dynamic-actor-enrichers-(dnd5e))
+* Your immediate d20/d100/d1000 rolls (regardless of whether you are using Dynamic Actor Enrichers in them) will now be colored red/green for natural 1's and natural 20/100/1000. Usefull to know, if you want to add some spice and make something interesting happen at those times.
 
 
 ## Changelog
-* Added Dynamic Actor Enrichers for DnD5e
+* 0.1.1 (Feb 21, 2026)
+  * Immediate d20/d100/d1000 rolls will now be colored red if you received a natural 1, or green if you received a natural 20/100/1000. This works for normal rolls as well, not just rolls using my enrichers. 
+* 0.1
+  * Added Dynamic Actor Enrichers for DnD5e
 
 ---
   
